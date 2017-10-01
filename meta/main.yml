@@ -36,7 +36,7 @@ galaxy_info:
   platforms:
   - name: CentOS
     versions:
-    - 7.0 
+    - 7
 
   galaxy_tags: 
     - CentOS
