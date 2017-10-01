@@ -45,6 +45,7 @@
      - perl-LWP-Protocol-https
      - firewalld
      - fail2ban-all
+     - tree
 
  - name: install the 'Development tools' package group
    yum: name="@Development tools" state=present
