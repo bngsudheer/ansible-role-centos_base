@@ -6,7 +6,7 @@ After the CentOS operating system is installed, perform some basic software inst
     - Updates packages
     - Installs a few packages such as 'Development Tools', mercurial, git, gcc, firewalld
     - Install and configure fail2ban and protect against ssh brute force attacks
-    - Secure ssh config file
+    - Secure SSH config file
 
 Requirements
 ------------
@@ -16,10 +16,10 @@ Not much.
 Role Variables
 --------------
 
-    - secure_sshd: yes
-    - basic_vim_tweaks: yes
-    - htop_configuration: yes
-    - fail2ban_configuration: yes
+    - centos_base_secure_sshd: yes
+    - centos_base_basic_vim_tweaks: yes
+    - centos_base_htop_configuration: yes
+    - centos_base_fail2ban_configuration: yes
 
 Dependencies
 ------------

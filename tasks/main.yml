@@ -42,17 +42,29 @@
      - supervisor
      - nethogs
      - screen
+     - tree
+     - policycoreutils-python
+
+ - name: install packages specific to CentOS 6
+   action: yum name={{ item }} state=installed
+   with_items:
+     - fail2ban
+   when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "6"
+
+ - name: install packages specific to CentOS 7
+   action: yum name={{ item }} state=installed
+   with_items:
      - perl-LWP-Protocol-https
      - firewalld
      - fail2ban-all
-     - tree
+   when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7"
 
  - name: install the 'Development tools' package group
    yum: name="@Development tools" state=present
 
  - name: vim alias
    lineinfile: dest=/root/.bashrc line="alias vi=vim" state=present
-   when: basic_vim_tweaks
+   when: centos_base_basic_vim_tweaks
 
  - name: Setup some vim defaults
    template: dest=/root/ src=root/.vimrc
@@ -64,26 +76,27 @@
    file: 
     path: /root/.config/htop
     state: directory
-   when: htop_configuration
+   when: centos_base_htop_configuration
 
  - name: Configure htop
    file:
      src: root/.config/htop/htoprc
      dest: /root/.config/htop
-   when: htop_configuration
+   when: centos_base_htop_configuration
 
  - name: Add fail2ban to startup
    service: name=fail2ban state=started enabled=yes
-   when: fail2ban_configuration
+   when: centos_base_fail2ban_configuration
 
  - name: Secure Fail2ban config
    template: src=etc/fail2ban/jail.local dest=/etc/fail2ban
-   when: fail2ban_configuration
+   when: centos_base_fail2ban_configuration
 
  - name: Secure SSH config
    template: src=etc/ssh/sshd_config dest=/etc/ssh
    notify: restart sshd
-   when: secure_sshd
+   when: centos_base_secure_sshd
 
  - name: Firewalld service
    service: name=firewalld state=started enabled=yes
+   when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7"

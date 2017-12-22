@@ -1,7 +1,7 @@
 ---
 # defaults file for centos_base
 
-secure_sshd: yes
-basic_vim_tweaks: yes
-htop_configuration: yes
-fail2ban_configuration: yes
+centos_base_secure_sshd: yes
+centos_base_basic_vim_tweaks: yes
+centos_base_htop_configuration: yes
+centos_base_fail2ban_configuration: yes
