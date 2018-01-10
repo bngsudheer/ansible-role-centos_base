@@ -7,6 +7,7 @@ After the CentOS operating system is installed, perform some basic software inst
     - Installs a few packages such as 'Development Tools', mercurial, git, gcc, firewalld
     - Install and configure fail2ban and protect against ssh brute force attacks
     - Secure SSH config file
+    - Install SELinux packages
 
 Requirements
 ------------
@@ -20,6 +21,7 @@ Role Variables
     - centos_base_basic_vim_tweaks: yes
     - centos_base_htop_configuration: yes
     - centos_base_fail2ban_configuration: yes
+    - centos_base_install_selinux_packages: yes
 
 Dependencies
 ------------
@@ -33,7 +35,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: bngsudheer.centos_base }
+         - bngsudheer.centos_base
 
 License
 -------
