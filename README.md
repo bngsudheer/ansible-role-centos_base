@@ -45,4 +45,7 @@ BSD
 Author Information
 ------------------
 
-Sudheer Satyanaraya. http://www.techchorus.net
+Sudheer Satyanarayana.
+* [Twitter](https://twitter.com/bngsudheer)
+* [GitHub](https://github.com/bngsudheer)
+* [Work](https://www.gavika.com/)
