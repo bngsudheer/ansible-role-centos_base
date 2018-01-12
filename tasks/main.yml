@@ -29,7 +29,6 @@
      - htop
      - screen
      - cifs-utils
-     - denyhosts
      - perl-Net-XMPP
      - nsca
      - nsca-client
