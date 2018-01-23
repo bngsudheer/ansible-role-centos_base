@@ -1,6 +1,6 @@
-Role Name And Description
+Role Description
 =========
-Name: bngsudheer.centos_base
+Name: *bngsudheer.centos_base*
 
 After the CentOS operating system is installed, perform some basic software installation and tweak a few things.
 
@@ -17,13 +17,15 @@ None.
 
 Role Variables
 --------------
-The following variables with their defaults are available:
+The following role variables are available:
 
-  - centos_base_secure_sshd: no
-  - centos_base_basic_vim_tweaks: no
-  - centos_base_htop_configuration: no
-  - centos_base_fail2ban_configuration: no
-  - centos_base_install_selinux_packages: yes
+|Variable | Default Value | Required? |
+|-------------------------------------|
+| centos_base_secure_sshd |  no | No  | 
+| centos_base_basic_vim_tweaks | no | No |
+| centos_base_htop_configuration|  no | No |
+| centos_base_fail2ban_configuration | no | No |
+| centos_base_install_selinux_packages |  yes | No |
 
 It is recommended to set them all to _yes_.
 
