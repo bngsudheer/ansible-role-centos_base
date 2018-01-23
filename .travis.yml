@@ -1,6 +1,11 @@
 ---
+sudo: required
+language: python
 services:
   - docker
+install:
+   - pip install molecule
+   - pip install docker  
 env:
   - distro: centos7
     playbook: test.yml
@@ -20,6 +25,8 @@ script:
 
   # Run tests.
   - ${PWD}/tests/test.sh
-    
+  
+  # In addition to above test, run molecule tests
+  - molecule test    
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
