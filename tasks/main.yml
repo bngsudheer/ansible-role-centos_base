@@ -1,116 +1,115 @@
 ---
-# tasks file for centos_base
- - name: update the CA Certificates first
-   yum: name=ca-certificates state=latest
+# - name: update the CA Certificates first
+#   yum: name=ca-certificates state=latest
 
- - name: install and enable EPEL
-   yum: name=epel-release state=present
+- name: install and enable EPEL
+  yum: name=epel-release state=present
 
- - name: Update packages
-   yum: name=* state=latest
+# - name: Update packages
+#   yum: name=* state=latest
 
- - name: install packages
-   action: yum name={{ item }} state=installed
-   with_items:
-     - mercurial
-     - git
-     - vim-enhanced
-     - gcc
-     - kernel-devel
-     - kernel-headers
-     - sqlite-devel
-     - sqlite
-     - bzip2-devel
-     - readline-devel
-     - tcl-devel
-     - libcurl
-     - openssl-devel*
-     - zlib*
-     - htop
-     - screen
-     - cifs-utils
-     - perl-Net-XMPP
-     - nsca
-     - nsca-client
-     - python-virtualenv
-     - postfix
-     - perl-libwww-perl
-     - yum-cron
-     - yum-utils
-     - strace
-     - supervisor
-     - nethogs
-     - screen
-     - tree
-     - policycoreutils-python
+- name: install packages
+  action: yum name={{ item }} state=installed
+  with_items:
+    - mercurial
+    - git
+    - vim-enhanced
+    - gcc
+    - kernel-devel
+    - kernel-headers
+    - sqlite-devel
+    - sqlite
+    - bzip2-devel
+    - readline-devel
+    - tcl-devel
+    - libcurl
+    - openssl-devel*
+    - zlib*
+    - htop
+    - screen
+    - cifs-utils
+    - perl-Net-XMPP
+    - nsca
+    - nsca-client
+    - python-virtualenv
+    - postfix
+    - perl-libwww-perl
+    - yum-cron
+    - yum-utils
+    - strace
+    - supervisor
+    - nethogs
+    - screen
+    - tree
+    - policycoreutils-python
 
- - name: install packages specific to CentOS 6
-   action: yum name={{ item }} state=installed
-   with_items:
-     - fail2ban
-   when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "6"
+- name: install packages specific to CentOS 6
+  action: yum name={{ item }} state=installed
+  with_items:
+    - fail2ban
+  when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "6"
 
- - name: install packages specific to CentOS 7
-   action: yum name={{ item }} state=installed
-   with_items:
-     - perl-LWP-Protocol-https
-     - firewalld
-     - fail2ban-all
-   when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7"
+- name: install packages specific to CentOS 7
+  action: yum name={{ item }} state=installed
+  with_items:
+    - perl-LWP-Protocol-https
+    - firewalld
+    - fail2ban-all
+  when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7"
 
- - name: install the 'Development tools' package group
-   yum: name="@Development tools" state=present
+- name: install the 'Development tools' package group
+  yum: name="@Development tools" state=present
 
- - name: Install SELinux packages
-   yum: 
-     name: "{{ item }}"
-   with_items:
-     - policycoreutils 
-     - policycoreutils-python 
-     - selinux-policy 
-     - selinux-policy-targeted 
-     - libselinux-utils 
-     - setroubleshoot-server 
-     - setools 
-     - setools-console 
-     - mcstrans
-   when: centos_base_install_selinux_packages
+- name: Install SELinux packages
+  yum:
+    name: "{{ item }}"
+  with_items:
+    - policycoreutils
+    - policycoreutils-python
+    - selinux-policy
+    - selinux-policy-targeted
+    - libselinux-utils
+    - setroubleshoot-server
+    - setools
+    - setools-console
+    - mcstrans
+  when: centos_base_install_selinux_packages
 
- - name: vim alias
-   lineinfile: dest=/root/.bashrc line="alias vi=vim" state=present
-   when: centos_base_basic_vim_tweaks
+- name: vim alias
+  lineinfile: dest=/root/.bashrc line="alias vi=vim" state=present
+  when: centos_base_basic_vim_tweaks
 
- - name: Setup some vim defaults
-   template: dest=/root/ src=root/.vimrc
+- name: Setup some vim defaults
+  template: dest=/root/ src=root/.vimrc
 
- - name: Don't lock GNU screen session
-   lineinfile: dest=/root/.bashrc line='export LOCKPRG="/bin/true"' state=present
+- name: Don't lock GNU screen session
+  lineinfile: dest=/root/.bashrc line='export LOCKPRG="/bin/true"' state=present
 
- - name: create htop direcotry
-   file: 
+- name: create htop direcotry
+  file:
     path: /root/.config/htop
     state: directory
-   when: centos_base_htop_configuration
+  when: centos_base_htop_configuration
 
- - name: Configure htop
-   file:
-     src: root/.config/htop/htoprc
-     dest: /root/.config/htop
-   when: centos_base_htop_configuration
+- name: Configure htop
+  file:
+    src: root/.config/htop/htoprc
+    dest: /root/.config/htop
+  when: centos_base_htop_configuration
 
- - name: Add fail2ban to startup
-   service: name=fail2ban state=started enabled=yes
-   when: centos_base_fail2ban_configuration
+- name: Add fail2ban to startup
+  service: name=fail2ban state=started enabled=yes
+  when: centos_base_fail2ban_configuration
 
- - name: Secure Fail2ban config
-   template: src=etc/fail2ban/jail.local dest=/etc/fail2ban
-   when: centos_base_fail2ban_configuration
+- name: Secure Fail2ban config
+  template: src=etc/fail2ban/jail.local dest=/etc/fail2ban
+  when: centos_base_fail2ban_configuration
 
- - name: Secure SSH config
-   template: src=etc/ssh/sshd_config dest=/etc/ssh
-   notify: restart sshd
-   when: centos_base_secure_sshd
+- name: Secure SSH config
+  template: src=etc/ssh/sshd_config dest=/etc/ssh
+  notify: restart sshd
+  when: centos_base_secure_sshd
 
- - name: Firewalld service
-   service: name=firewalld state=started enabled=yes
-   when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7"
+- name: Firewalld service
+  service: name=firewalld state=started enabled=yes
+  when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7"

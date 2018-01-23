@@ -4,7 +4,6 @@ Name: *bngsudheer.centos_base*
 
 After the CentOS operating system is installed, perform some basic software installation and tweak a few things.
 
-  - Update packages
   - Install a few packages such as 'Development Tools', mercurial, git, firewalld
   - Install and configure fail2ban and protect against SSH brute force attacks
   - Secure SSH config file to allow only key based login

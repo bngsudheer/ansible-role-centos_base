@@ -1,3 +1,4 @@
+---
 galaxy_info:
   author: Sudheer Satyanarayana
   description: Basic CentOS Configuration
@@ -34,12 +35,12 @@ galaxy_info:
   # platforms is a list of platforms, and each platform has a name and a list of versions.
   #
   platforms:
-  - name: EL
-    versions:
-    - 7
-    - 6
+    - name: EL
+      versions:
+        - 7
+        - 6
 
-  galaxy_tags: 
+  galaxy_tags:
     - CentOS
     - PostInstallTweaks
     - System
@@ -51,5 +52,3 @@ galaxy_info:
     #       Maximum 20 tags per role.
 
 dependencies: []
-  # List your role dependencies here, one per line. Be sure to remove the '[]' above,
-  # if you add dependencies to this list.
