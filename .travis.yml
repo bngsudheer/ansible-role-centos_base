@@ -9,7 +9,8 @@ install:
 env:
   - distro: centos7
     playbook: test.yml
-
+  - distro: centos6
+    playbook: test.yml
 branches:
   only:
     - master
