@@ -25,6 +25,7 @@ scenario:
     - prepare
     - converge
     - lint
+    - idempotence
     - side_effect
     - verify
     - destroy
