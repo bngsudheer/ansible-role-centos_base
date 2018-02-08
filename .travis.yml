@@ -28,6 +28,6 @@ script:
   - ${PWD}/tests/test.sh
 
   # In addition to above test, run molecule tests
-  - molecule test
+  # - molecule test
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
