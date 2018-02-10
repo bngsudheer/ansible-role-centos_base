@@ -1,9 +1,9 @@
 ---
-- name: restart sshd
+- name: sshd restart
   service: name=sshd state=restarted
 
-- name: restart firewalld
+- name: firewalld restart
   service: name=firewalld state=restarted
 
-- name: restart fail2ban
+- name: fail2ban restart
   service: name=fail2ban state=restarted

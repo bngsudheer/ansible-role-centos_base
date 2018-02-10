@@ -6,6 +6,7 @@ services:
 install:
   - pip install molecule
   - pip install docker
+  - pip install docker-py
 env:
   - distro: centos7
     playbook: test.yml
@@ -28,6 +29,6 @@ script:
   - ${PWD}/tests/test.sh
 
   # In addition to above test, run molecule tests
-  # - molecule test
+  - molecule test
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

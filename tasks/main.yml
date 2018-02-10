@@ -1,12 +1,6 @@
 ---
-# - name: update the CA Certificates first
-#   yum: name=ca-certificates state=latest
-
 - name: install and enable EPEL
   yum: name=epel-release state=present
-
-# - name: Update packages
-#   yum: name=* state=latest
 
 - name: install packages
   action: yum name={{ item }} state=installed
@@ -107,9 +101,24 @@
 
 - name: Secure SSH config
   template: src=etc/ssh/sshd_config dest=/etc/ssh
-  notify: restart sshd
+  notify: sshd restart
   when: centos_base_secure_sshd
 
 - name: Firewalld service
   service: name=firewalld state=started enabled=yes
   when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7"
+
+- name: Enable firewalld services
+  firewalld:
+    permanent: "{{ item[1] }}"
+    service: "{{ item[0] }}"
+    state: enabled
+    zone: public
+  with_nested:
+    - '{{ centos_base_firewalld_services }}'
+    - [yes, no]
+  notify:
+    - firewalld restart
+  when:
+    - ansible_distribution == "CentOS" and ansible_distribution_major_version == "7"
+    - centos_base_firewalld_services
