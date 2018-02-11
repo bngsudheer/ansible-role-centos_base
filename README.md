@@ -25,7 +25,7 @@ The following role variables are available:
 | centos_base_htop_configuration|  no | No |
 | centos_base_fail2ban_configuration | no | No |
 | centos_base_install_selinux_packages |  yes | No |
-| centos_base_firewalld_ports| [] | No|
+| centos_base_firewalld_services| [] | No|
 
 It is recommended to set them all bolean variables to _yes_.
 
