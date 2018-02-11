@@ -18,17 +18,6 @@ provisioner:
     name: ansible-lint
 scenario:
   name: default
-  test_sequence:
-    - destroy
-    - syntax
-    - create
-    - prepare
-    - converge
-    - lint
-    - idempotence
-    - side_effect
-    - verify
-    - destroy
 verifier:
   name: testinfra
   lint:

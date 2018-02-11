@@ -6,9 +6,13 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
 
 
-def test_hosts_file(host):
-    f = host.file('/etc/hosts')
+def test_epel_is_installed(host):
+    package = host.package("epel-release")
+    assert package.is_installed
 
-    assert f.exists
-    assert f.user == 'root'
-    assert f.group == 'root'
+
+def test_epel_packages(host):
+    packages = ['screen', 'htop']
+    for package_name in packages:
+        package = host.package(package_name)
+        assert package.is_installed
