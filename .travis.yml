@@ -26,7 +26,8 @@ script:
   - chmod +x ${PWD}/tests/test.sh
 
   # Run tests.
-  - ${PWD}/tests/test.sh
+  # Geerling's style tests
+  # - ${PWD}/tests/test.sh
 
   # In addition to above test, run molecule tests
   - molecule test
