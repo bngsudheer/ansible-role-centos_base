@@ -35,7 +35,7 @@
     - htop
     - tree
     - wget
-  when: install_base_utility_packages
+  when: centos_base_utility_packages
 
 - name: install packages specific to CentOS 7
   action: yum name={{ item }} state=installed
