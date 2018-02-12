@@ -19,7 +19,7 @@ Role Variables
 The following role variables are available:
 
 | Variable | Default Value | Description | Required? |
-|----------|---------------|-----------|
+|----------|---------------|-----------|-------------|
 | centos_base_secure_sshd |  false | Secure ssd configuration | No  |
 | centos_base_basic_vim_tweaks | false | Install Basic VIM tweaks | No |
 | centos_base_htop_configuration | false | Basic htoprc configuration | No |
