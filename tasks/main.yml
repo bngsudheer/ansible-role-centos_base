@@ -24,6 +24,7 @@
     - yum-utils
     - supervisor
     - nethogs
+  when: centos_base_basic_packages
 
 - name: install utility packages
   action: yum name={{ item }} state=installed
@@ -43,7 +44,6 @@
     - vim-enhanced
     - screen
     - cifs-utils
-
     - strace
   when: centos_base_utility_packages
 
@@ -78,7 +78,7 @@
     - setools
     - setools-console
     - mcstrans
-  when: centos_base_install_selinux_packages
+  when: centos_base_selinux_packages
 
 - name: Install Nagios packages
   yum:
@@ -87,7 +87,7 @@
     - perl-Net-XMPP
     - nsca
     - nsca-client
-  when: centos_base_install_packages
+  when: centos_base_nagios_packages
 
 - name: vim alias
   lineinfile: dest=/root/.bashrc line="alias vi=vim" state=present
@@ -95,8 +95,9 @@
 
 - name: Setup some vim defaults
   template: dest=/root/ src=root/.vimrc
+  when: centos_base_basic_vim_tweaks
 
-- name: Don't lock GNU screen session
+- name: LOCKPRG to avoid locking of GNU screen sessions
   lineinfile: dest=/root/.bashrc line='export LOCKPRG="/bin/true"' state=present
 
 - name: create htop direcotry
