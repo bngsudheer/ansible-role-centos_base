@@ -1,7 +1,10 @@
 ---
+# TODO move this playbook to a different scenario
+# Default scenario must work with default variable values
 - name: Converge
   hosts: all
   vars:
     - centos_base_utility_packages: true
+    - centos_base_enable_epel: true
   roles:
     - role: ansible-role-centos_base
