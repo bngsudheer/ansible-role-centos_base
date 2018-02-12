@@ -18,17 +18,17 @@ Role Variables
 --------------
 The following role variables are available:
 
-| Variable | Default Value | Required? |
+| Variable | Default Value | Description | Required? |
 |----------|---------------|-----------|
-| centos_base_secure_sshd |  false | No  |
-| centos_base_basic_vim_tweaks | false | No |
-| centos_base_htop_configuration|  false | No |
-| centos_base_fail2ban_configuration | false | No |
-| centos_base_install_selinux_packages |  true | No |
-| centos_base_firewalld_services| [] | No |
-| centos_base_install_nagios_packages | false | No|
+| centos_base_secure_sshd |  false | Secure ssd configuration | No  |
+| centos_base_basic_vim_tweaks | false | Install Basic VIM tweaks | No |
+| centos_base_htop_configuration | false | Basic htoprc configuration | No |
+| centos_base_fail2ban_configuration | false |Basic fail2ban configuration |  No |
+| centos_base_install_selinux_packages |  true | Install SELinux packages | No |
+| centos_base_firewalld_services| [] | List of services to enable in firewalld | No |
+| centos_base_install_nagios_packages | false | Install Nagios and related packages | No |
+| centos_base_utility_packages | false | Install utility packages | No |
 
-It is recommended to set them all bolean variables to _yes_.
 
 Dependencies
 ------------

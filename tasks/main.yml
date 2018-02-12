@@ -7,7 +7,6 @@
   with_items:
     - mercurial
     - git
-    - vim-enhanced
     - gcc
     - kernel-devel
     - kernel-headers
@@ -19,20 +18,34 @@
     - libcurl
     - openssl-devel*
     - zlib*
-    - htop
-    - screen
-    - cifs-utils
     - python-virtualenv
     - postfix
-    - perl-libwww-perl
     - yum-cron
     - yum-utils
-    - strace
     - supervisor
     - nethogs
+
+- name: install utility packages
+  action: yum name={{ item }} state=installed
+  with_items:
+    - vim-enhanced
     - screen
+    - cifs-utils
+    - screen
+    - htop
     - tree
-    - policycoreutils-python
+    - wget
+  when: install_base_utility_packages
+
+- name: install packages specific to CentOS 7
+  action: yum name={{ item }} state=installed
+  with_items:
+    - vim-enhanced
+    - screen
+    - cifs-utils
+
+    - strace
+  when: centos_base_utility_packages
 
 - name: install packages specific to CentOS 6
   action: yum name={{ item }} state=installed
@@ -46,6 +59,7 @@
     - perl-LWP-Protocol-https
     - firewalld
     - fail2ban-all
+    - perl-libwww-perl
   when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7"
 
 - name: install the 'Development tools' package group
