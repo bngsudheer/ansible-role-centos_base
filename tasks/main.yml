@@ -22,9 +22,6 @@
     - htop
     - screen
     - cifs-utils
-    - perl-Net-XMPP
-    - nsca
-    - nsca-client
     - python-virtualenv
     - postfix
     - perl-libwww-perl
@@ -68,6 +65,15 @@
     - setools-console
     - mcstrans
   when: centos_base_install_selinux_packages
+
+- name: Install Nagios packages
+  yum:
+    name: '{{ item }}'
+  with_items:
+    - perl-Net-XMPP
+    - nsca
+    - nsca-client
+  when: centos_base_install_packages
 
 - name: vim alias
   lineinfile: dest=/root/.bashrc line="alias vi=vim" state=present
