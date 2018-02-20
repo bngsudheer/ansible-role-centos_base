@@ -24,6 +24,7 @@
     - yum-cron
     - yum-utils
     - supervisor
+    - which
   when: centos_base_basic_packages
 
 - name: install utility packages
