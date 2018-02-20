@@ -17,8 +17,8 @@
     - readline-devel
     - tcl-devel
     - libcurl
-    - openssl-devel*
-    - zlib*
+    - openssl-devel
+    - zlib-static
     - python-virtualenv
     - postfix
     - yum-cron
