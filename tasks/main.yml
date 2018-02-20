@@ -38,6 +38,17 @@
     - wget
   when: centos_base_utility_packages
 
+- name: install zlib packages from EPEL
+  name:
+    yum:
+      name: '{{ item }}'
+    with_items:
+      - zlib-ada-devel
+      - zlib-ada
+  when:
+    - centos_base_enable_epel
+    - centos_base_basic_packages
+
 - name: install debugging packages
   action: yum name={{ item }} state=installed
   with_items:
