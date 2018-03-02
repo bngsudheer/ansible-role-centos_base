@@ -119,7 +119,7 @@
   when: centos_base_htop_configuration
 
 - name: Configure htop
-  file:
+  copy:
     src: root/.config/htop/htoprc
     dest: /root/.config/htop
   when: centos_base_htop_configuration
