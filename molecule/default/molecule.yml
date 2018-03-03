@@ -12,6 +12,8 @@ platforms:
     volume_mounts:
       - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
     command: "/usr/sbin/init"
+    capabilities:
+      - SYS_ADMIN
 provisioner:
   name: ansible
   lint:

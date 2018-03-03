@@ -86,12 +86,20 @@
 - name: install packages specific to CentOS 7
   action: yum name={{ item }} state=installed
   with_items:
-    - firewalld
     - fail2ban-all
   when:
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "7"
     - centos_base_enable_epel
+    - centos_base_fail2ban_configuration
+
+- name: firewalld
+  yum:
+    name: firewalld
+  when:
+    - ansible_distribution == "CentOS"
+    - ansible_distribution_major_version == "7"
+    - centos_base_basic_packages
 
 - name: Install Nagios packages
   yum:
