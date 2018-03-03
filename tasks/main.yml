@@ -151,12 +151,15 @@
   notify: sshd restart
   when: centos_base_secure_sshd
 
-- name: Firewalld service
+- name: Ensure firewalld is started and enabled
   systemd:
     name: firewalld
     state: started
     enabled: yes
-  when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "7"
+  when:
+    - ansible_distribution == "CentOS"
+    - ansible_distribution_major_version == "7"
+    - centos_base_basic_packages
 
 - name: Enable firewalld services
   firewalld:
