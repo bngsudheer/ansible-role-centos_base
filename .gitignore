@@ -1,4 +1,5 @@
 tests/test.sh
 *.retry
-molecule/default/.molecule/
+molecule/**/.molecule/
 *.pyc
+molecule/**/pytestdebug.log

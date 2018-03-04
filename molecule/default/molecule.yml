@@ -12,8 +12,16 @@ platforms:
     volume_mounts:
       - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
     command: "/usr/sbin/init"
-    # capabilities:
-    #  - SYS_ADMIN
+    capabilities:
+      - SYS_ADMIN
+  # - name: instance6
+  #   image: centos:6
+  #   privileged: true
+  #   volume_mounts:
+  #     - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
+  #   command: "/usr/sbin/init"
+  #   capabilities:
+  #     - SYS_ADMIN
 provisioner:
   name: ansible
   lint:
