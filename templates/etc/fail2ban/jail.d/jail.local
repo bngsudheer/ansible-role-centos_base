@@ -1,5 +1,6 @@
 [DEFAULT]
 # Ban hosts for one hour:
+backend=pyinotify
 bantime = 3600
 
 # Override /etc/fail2ban/jail.d/00-firewalld.conf:
@@ -7,3 +8,7 @@ banaction = iptables-multiport
 
 [sshd]
 enabled = true
+
+[nginx-http-auth]
+ports   = http,https
+logpath = %(nginx_error_log)s
