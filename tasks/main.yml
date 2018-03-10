@@ -50,7 +50,6 @@
   action: yum name={{ item }} state=installed
   with_items:
     - vim-enhanced
-    - screen
     - cifs-utils
     - screen
     - htop
