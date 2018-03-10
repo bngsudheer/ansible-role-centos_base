@@ -34,7 +34,7 @@ The following role variables are available:
 | centos_base_install_selinux_packages |  true | Install SELinux packages | No |
 | centos_base_firewalld_services| [] | List of services to enable in firewalld | No |
 | centos_base_install_nagios_packages | false | Install Nagios and related packages | No |
-| centos_base_utility_packages | false | Install utility packages | No |
+| centos_base_utility_packages | false | Install utility packages such as screen, htop, wget | No |
 | centos_base_debug_packages | false | Install debugging packages | No |
 | centos_base_lockprg | false | Export LOCKPRG in .bashrc | No
 
