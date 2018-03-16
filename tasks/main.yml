@@ -1,9 +1,9 @@
 ---
-- name: install and enable EPEL
+- name: Install and enable EPEL
   yum: name=epel-release state=present
   when: centos_base_enable_epel
 
-- name: install basic packages
+- name: Install basic packages
   action: yum name={{ item }} state=installed
   with_items:
     - mercurial
@@ -27,7 +27,7 @@
     - which
   when: centos_base_basic_packages
 
-- name: install the 'Development tools' package group
+- name: Install the 'Development tools' package group
   yum: name="@Development tools" state=present
   when: centos_base_basic_packages
 
@@ -46,7 +46,7 @@
     - mcstrans
   when: centos_base_selinux_packages
 
-- name: install utility packages
+- name: Install utility packages
   action: yum name={{ item }} state=installed
   with_items:
     - vim-enhanced
@@ -57,7 +57,7 @@
     - wget
   when: centos_base_utility_packages
 
-- name: install zlib packages from EPEL
+- name: Install zlib packages from EPEL
   yum:
     name: '{{ item }}'
   with_items:
@@ -67,13 +67,16 @@
     - centos_base_enable_epel
     - centos_base_basic_packages
 
-- name: install debugging packages
+- name: Install debugging packages
   action: yum name={{ item }} state=installed
   with_items:
     - strace
+    - mtr
+    - traceroute
+    - nmap
   when: centos_base_debug_packages
 
-- name: install packages specific to CentOS 6
+- name: Install packages specific to CentOS 6
   action: yum name={{ item }} state=installed
   with_items:
     - fail2ban
@@ -82,7 +85,7 @@
     - ansible_distribution_major_version == "6"
     - centos_base_enable_epel
 
-- name: install packages specific to CentOS 7
+- name: Install packages specific to CentOS 7
   action: yum name={{ item }} state=installed
   with_items:
     - fail2ban-all
@@ -92,7 +95,7 @@
     - centos_base_enable_epel
     - centos_base_fail2ban_configuration
 
-- name: firewalld
+- name: Install firewalld
   yum:
     name: firewalld
   when:
@@ -113,11 +116,11 @@
     - centos_base_nagios_packages
     - ansible_distribution_major_version == "7"
 
-- name: vim alias
+- name: vim alias in .bashrc
   lineinfile: dest=/root/.bashrc line="alias vi=vim" state=present
   when: centos_base_basic_vim_tweaks
 
-- name: Setup some vim defaults
+- name: .vimrc file
   template: dest=/root/ src=root/.vimrc
   when: centos_base_basic_vim_tweaks
 
@@ -125,7 +128,7 @@
   lineinfile: dest=/root/.bashrc line='export LOCKPRG="/bin/true"' state=present
   when: centos_base_lockprg
 
-- name: create htop direcotry
+- name: Create htop direcotry
   file:
     path: /root/.config/htop
     state: directory
@@ -142,13 +145,13 @@
   when: centos_base_fail2ban_configuration
 
 # Allow user to control /etc/fail2ban/jail.local
-- name: Secure Fail2ban config
+- name: Secure Fail2ban configuration
   template:
     src: etc/fail2ban/jail.d/centos_base.conf
     dest: /etc/fail2ban/jail.d
   when: centos_base_fail2ban_configuration
 
-- name: Secure SSH config
+- name: Secure SSH configuration
   template: src=etc/ssh/sshd_config dest=/etc/ssh
   notify: sshd restart
   when: centos_base_secure_sshd
