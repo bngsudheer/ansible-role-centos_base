@@ -20,7 +20,7 @@ galaxy_info:
     - System
     - Firewalld
     - Fail2ban
-    - Development_packages
+    - DevelopmentPackages
 
 
 dependencies: []
