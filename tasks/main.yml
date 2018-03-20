@@ -25,6 +25,8 @@
     - yum-utils
     - supervisor
     - which
+    - bzip2
+    - gzip
   when: centos_base_basic_packages
 
 - name: Install the 'Development tools' package group
