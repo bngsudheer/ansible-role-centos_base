@@ -76,6 +76,9 @@
     - mtr
     - traceroute
     - nmap
+    - iotop
+    - vnstat
+    - sysstat
   when: centos_base_debug_packages
 
 - name: Install packages specific to CentOS 6
