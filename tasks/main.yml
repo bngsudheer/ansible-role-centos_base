@@ -108,19 +108,6 @@
     - ansible_distribution_major_version == "7"
     - centos_base_basic_packages
 
-- name: Install Nagios packages
-  yum:
-    name: '{{ item }}'
-  with_items:
-    - perl-Net-XMPP
-    - nsca
-    - nsca-client
-    - perl-LWP-Protocol-https
-    - perl-libwww-perl
-  when:
-    - centos_base_nagios_packages
-    - ansible_distribution_major_version == "7"
-
 - name: vim alias in .bashrc
   lineinfile: dest=/root/.bashrc line="alias vi=vim" state=present
   when: centos_base_basic_vim_tweaks
