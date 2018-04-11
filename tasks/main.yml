@@ -1,10 +1,12 @@
 ---
 - name: Install and enable EPEL
-  yum: name=epel-release state=present
+  yum:
+    name: epel-release
   when: centos_base_enable_epel
 
 - name: Install basic packages
-  action: yum name={{ item }} state=installed
+  yum:
+    name: "{{ item }}"
   with_items:
     - mercurial
     - git
@@ -30,7 +32,8 @@
   when: centos_base_basic_packages
 
 - name: Install the 'Development tools' package group
-  yum: name="@Development tools" state=present
+  yum:
+    name: "@Development tools"
   when: centos_base_basic_packages
 
 - name: Install SELinux packages
@@ -49,7 +52,8 @@
   when: centos_base_selinux_packages
 
 - name: Install utility packages
-  action: yum name={{ item }} state=installed
+  yum:
+    name: "{{ item }}"
   with_items:
     - vim-enhanced
     - cifs-utils
@@ -61,7 +65,7 @@
 
 - name: Install zlib packages from EPEL
   yum:
-    name: '{{ item }}'
+    name: "{{ item }}"
   with_items:
     - zlib-ada-devel
     - zlib-ada
@@ -70,7 +74,8 @@
     - centos_base_basic_packages
 
 - name: Install debugging packages
-  action: yum name={{ item }} state=installed
+  yum:
+    name: "{{ item }}"
   with_items:
     - strace
     - mtr
@@ -82,7 +87,8 @@
   when: centos_base_debug_packages
 
 - name: Install packages specific to CentOS 6
-  action: yum name={{ item }} state=installed
+  yum:
+    name: "{{ item }}"
   with_items:
     - fail2ban
   when:
@@ -91,7 +97,7 @@
     - centos_base_enable_epel
 
 - name: Install packages specific to CentOS 7
-  action: yum name={{ item }} state=installed
+  yum: "{{ item }}"
   with_items:
     - fail2ban-all
   when:
