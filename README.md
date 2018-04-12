@@ -56,7 +56,7 @@ Example Playbook
         - centos_base_basic_vim_tweaks: true
         - centos_base_htop_configuration: true
         - centos_base_fail2ban_configuration: true
-        - centos_base_install_selinux_packages: true
+        - centos_base_selinux_packages: true
         - centos_base_firewalld_services: ['http', 'https']
       roles:
          - bngsudheer.centos_base
