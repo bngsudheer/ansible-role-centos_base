@@ -6,5 +6,7 @@
   vars:
     - centos_base_utility_packages: true
     - centos_base_enable_epel: true
+    - centos_base_vim_users: ['root']
+    - centos_base_basic_vim_tweaks: true
   roles:
     - role: ansible-role-centos_base
