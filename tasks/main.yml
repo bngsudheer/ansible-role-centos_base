@@ -8,7 +8,6 @@
   yum:
     name: "{{ item }}"
   with_items:
-    - mercurial
     - git
     - gcc
     - kernel-devel
@@ -22,10 +21,8 @@
     - openssl-devel
     - zlib-static
     - python-virtualenv
-    - postfix
     - yum-cron
     - yum-utils
-    - supervisor
     - which
     - bzip2
     - gzip
@@ -112,7 +109,7 @@
   when:
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "7"
-    - centos_base_basic_packages
+    - centos_base_security_packages
 
 - name: vim alias in .bashrc
   lineinfile: dest=/root/.bashrc line="alias vi=vim" state=present

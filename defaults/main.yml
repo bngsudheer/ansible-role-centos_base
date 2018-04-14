@@ -13,3 +13,4 @@ centos_base_basic_packages: false
 centos_base_debug_packages: false
 centos_base_enable_epel: false
 centos_base_lockprg: false
+centos_base_security_packages: false
