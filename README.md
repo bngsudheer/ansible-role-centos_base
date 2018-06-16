@@ -37,6 +37,7 @@ The following role variables are available:
 | centos_base_debug_packages | false | Install debugging packages | No |
 | centos_base_lockprg | false | Export LOCKPRG in .bashrc | No
 | centos_base_security_packages | false | Installs firewalld | No |
+| centos_base_firewalld | true | Whether to install and enable firewalld | No |
 
 Dependencies
 ------------
