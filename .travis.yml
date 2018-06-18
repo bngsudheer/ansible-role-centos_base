@@ -6,7 +6,6 @@ services:
 install:
   - pip install molecule
   - pip install docker
-#  - pip install docker-py
 env:
 branches:
   only:
@@ -14,6 +13,6 @@ branches:
 
 script:
   # run molecule tests
-  - molecule --debug test
+  - molecule test
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
