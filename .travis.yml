@@ -6,7 +6,7 @@ services:
 install:
   - pip install molecule
   - pip install docker
-  - pip install docker-py
+#  - pip install docker-py
 env:
 branches:
   only:
