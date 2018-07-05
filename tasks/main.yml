@@ -94,7 +94,8 @@
     - centos_base_enable_epel
 
 - name: Install packages specific to CentOS 7
-  yum: "{{ item }}"
+  yum:
+    name: "{{ item }}"
   with_items:
     - fail2ban-all
   when:
