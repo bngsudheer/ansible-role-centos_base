@@ -15,12 +15,11 @@ galaxy_info:
         - 6
 
   galaxy_tags:
-    - CentOS
-    - PostInstallTweaks
-    - System
-    - Firewalld
-    - Fail2ban
-    - DevelopmentPackages
-
+    - centos
+    - postinstalltweaks
+    - system
+    - security
+    - fail2ban
+    - development
 
 dependencies: []
