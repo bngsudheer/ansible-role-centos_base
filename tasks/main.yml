@@ -26,6 +26,7 @@
     - which
     - bzip2
     - gzip
+    - vim-enhanced
   when: centos_base_basic_packages
 
 - name: Install the 'Development tools' package group
