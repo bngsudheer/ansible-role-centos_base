@@ -46,6 +46,7 @@
     - setools
     - setools-console
     - mcstrans
+    - policycoreutils-devel
   when: centos_base_selinux_packages
 
 - name: Install utility packages
