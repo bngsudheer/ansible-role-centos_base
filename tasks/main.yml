@@ -49,7 +49,6 @@
     - mcstrans
     - policycoreutils-devel
     - setroubleshoot
-
   when: centos_base_selinux_packages
 
 - name: Install utility packages
