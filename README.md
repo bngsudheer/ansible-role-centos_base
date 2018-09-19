@@ -28,6 +28,7 @@ The following role variables are available:
 |----------|---------------|-----------|-------------|
 | centos_base_enable_epel | false | Enable EPEL Repository | No |
 | centos_base_secure_sshd |  false | Secure ssd configuration | No  |
+| centos_base_basic_packages | false | Basic packages | No |
 | centos_base_basic_vim_tweaks | false | Install Basic VIM tweaks | No |
 | centos_base_htop_configuration | false | Basic htoprc configuration | No |
 | centos_base_fail2ban_configuration | false |Basic fail2ban configuration |  No |
