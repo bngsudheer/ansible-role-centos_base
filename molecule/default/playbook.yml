@@ -12,6 +12,7 @@
     - centos_base_basic_packages: true
     - centos_base_firewalld: true
     - centos_base_debug_packages: true
+    - centos_base_security_packages: true
   pre_tasks:
     - name: Intall Apache
       yum:
