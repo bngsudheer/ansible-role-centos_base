@@ -84,7 +84,7 @@
     - iotop
     - vnstat
     - sysstat
-    - netstat
+    - net-tools
   when: centos_base_debug_packages
 
 - name: Install packages specific to CentOS 6
