@@ -13,12 +13,12 @@
     - centos_base_firewalld: true
     - centos_base_debug_packages: true
   pre_tasks:
-    - name: Intall Nginx
+    - name: Intall Apache
       yum:
-        name: nginx
-    - name: Start Nginx
+        name: httpd
+    - name: Start httpd
       systemd:
-        name: nginx
+        name: httpd
         state: started
   roles:
     - role: ansible-role-centos_base
