@@ -19,4 +19,4 @@ def test_epel_packages(host):
 
 
 def test_firewalld_80_open(host):
-    assert host.socket("tcp://0.0.0.080").is_listening
+    assert host.socket("tcp://0.0.0.0:80").is_listening
