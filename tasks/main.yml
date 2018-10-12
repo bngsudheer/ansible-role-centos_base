@@ -35,39 +35,36 @@
 
 - name: Install SELinux packages
   yum:
-    name: "{{ item }}"
-  with_items:
-    - policycoreutils
-    - policycoreutils-python
-    - selinux-policy
-    - selinux-policy-targeted
-    - libselinux-utils
-    - setroubleshoot-server
-    - setools
-    - setools-console
-    - mcstrans
-    - policycoreutils-devel
-    - setroubleshoot
+    name:
+      - policycoreutils
+      - policycoreutils-python
+      - selinux-policy
+      - selinux-policy-targeted
+      - libselinux-utils
+      - setroubleshoot-server
+      - setools
+      - setools-console
+      - mcstrans
+      - policycoreutils-devel
+      - setroubleshoot
   when: centos_base_selinux_packages
 
 - name: Install utility packages
   yum:
-    name: "{{ item }}"
-  with_items:
-    - vim-enhanced
-    - cifs-utils
-    - screen
-    - htop
-    - tree
-    - wget
+    name:
+      - vim-enhanced
+      - cifs-utils
+      - screen
+      - htop
+      - tree
+      - wget
   when: centos_base_utility_packages
 
 - name: Install zlib packages from EPEL
   yum:
-    name: "{{ item }}"
-  with_items:
-    - zlib-ada-devel
-    - zlib-ada
+    name:
+      - zlib-ada-devel
+      - zlib-ada
   when:
     - centos_base_enable_epel
     - centos_base_basic_packages
@@ -98,9 +95,8 @@
 
 - name: Install packages specific to CentOS 7
   yum:
-    name: "{{ item }}"
-  with_items:
-    - fail2ban-all
+    name:
+      - fail2ban-all
   when:
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "7"
