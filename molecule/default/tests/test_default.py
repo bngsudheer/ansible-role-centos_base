@@ -16,3 +16,7 @@ def test_epel_packages(host):
     for package_name in packages:
         package = host.package(package_name)
         assert package.is_installed
+
+
+def test_firewalld_80_open(host):
+    assert host.socket("tcp://0.0.0.0:80").is_listening
