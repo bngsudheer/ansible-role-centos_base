@@ -6,27 +6,26 @@
 
 - name: Install basic packages
   yum:
-    name: "{{ item }}"
-  with_items:
-    - git
-    - gcc
-    - kernel-devel
-    - kernel-headers
-    - sqlite-devel
-    - sqlite
-    - bzip2-devel
-    - readline-devel
-    - tcl-devel
-    - libcurl
-    - openssl-devel
-    - zlib-static
-    - python-virtualenv
-    - yum-cron
-    - yum-utils
-    - which
-    - bzip2
-    - gzip
-    - vim-enhanced
+    name:
+      - git
+      - gcc
+      - kernel-devel
+      - kernel-headers
+      - sqlite-devel
+      - sqlite
+      - bzip2-devel
+      - readline-devel
+      - tcl-devel
+      - libcurl
+      - openssl-devel
+      - zlib-static
+      - python-virtualenv
+      - yum-cron
+      - yum-utils
+      - which
+      - bzip2
+      - gzip
+      - vim-enhanced
   when: centos_base_basic_packages
 
 - name: Install the 'Development tools' package group
