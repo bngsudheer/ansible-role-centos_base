@@ -71,23 +71,21 @@
 
 - name: Install debugging packages
   yum:
-    name: "{{ item }}"
-  with_items:
-    - strace
-    - mtr
-    - traceroute
-    - nmap
-    - iotop
-    - vnstat
-    - sysstat
-    - net-tools
+    name:
+      - strace
+      - mtr
+      - traceroute
+      - nmap
+      - iotop
+      - vnstat
+      - sysstat
+      - net-tools
   when: centos_base_debug_packages
 
 - name: Install packages specific to CentOS 6
   yum:
-    name: "{{ item }}"
-  with_items:
-    - fail2ban
+    name:
+      - fail2ban
   when:
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "6"
