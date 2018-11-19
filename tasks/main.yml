@@ -72,7 +72,7 @@
 - name: Install debugging packages
   yum:
     name: "{{ item }}"
-  with_items:
+  loop:
     - strace
     - mtr
     - traceroute
