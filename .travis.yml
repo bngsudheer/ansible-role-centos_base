@@ -4,8 +4,10 @@ language: python
 services:
   - docker
 install:
-  - pip install molecule
+  # - pip install molecule
   - pip install docker
+  - pip install molecule==2.19 ansible==2.7.11 # Workaround for Ansible 2.8/Molecule issue
+
 env:
 branches:
   only:
