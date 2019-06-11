@@ -6,7 +6,8 @@ services:
 install:
   # - pip install molecule
   - pip install docker
-  - pip install molecule==2.19 ansible==2.7.11 # Workaround for Ansible 2.8/Molecule issue
+  # Workaround for Ansible 2.8/Molecule issue
+  - pip install molecule==2.19 ansible==2.7.11
 
 env:
 branches:
