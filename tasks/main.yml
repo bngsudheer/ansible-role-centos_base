@@ -2,7 +2,7 @@
 - name: Install and enable EPEL
   yum:
     name: epel-release
-  when: centos_base_enable_epel
+  when: centos_base_enable_epel|bool
 
 - name: Install basic packages
   yum:
@@ -26,12 +26,12 @@
       - bzip2
       - gzip
       - vim-enhanced
-  when: centos_base_basic_packages
+  when: centos_base_basic_packages|bool
 
 - name: Install the 'Development tools' package group
   yum:
     name: "@Development tools"
-  when: centos_base_basic_packages
+  when: centos_base_basic_packages|bool
 
 - name: Install SELinux packages
   yum:
@@ -47,7 +47,7 @@
       - mcstrans
       - policycoreutils-devel
       - setroubleshoot
-  when: centos_base_selinux_packages
+  when: centos_base_selinux_packages|bool
 
 - name: Install utility packages
   yum:
@@ -58,7 +58,7 @@
       - htop
       - tree
       - wget
-  when: centos_base_utility_packages
+  when: centos_base_utility_packages|bool
 
 - name: Install zlib packages from EPEL
   yum:
@@ -66,8 +66,8 @@
       - zlib-ada-devel
       - zlib-ada
   when:
-    - centos_base_enable_epel
-    - centos_base_basic_packages
+    - centos_base_enable_epel|bool
+    - centos_base_basic_packages|bool
 
 - name: Install debugging packages
   yum:
@@ -80,7 +80,7 @@
       - vnstat
       - sysstat
       - net-tools
-  when: centos_base_debug_packages
+  when: centos_base_debug_packages|bool
 
 - name: Install packages specific to CentOS 6
   yum:
@@ -89,7 +89,7 @@
   when:
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "6"
-    - centos_base_enable_epel
+    - centos_base_enable_epel|bool
 
 - name: Install packages specific to CentOS 7
   yum:
@@ -99,8 +99,8 @@
   when:
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "7"
-    - centos_base_enable_epel
-    - centos_base_fail2ban_configuration
+    - centos_base_enable_epel|bool
+    - centos_base_fail2ban_configuration|bool
 
 - name: Install firewalld
   yum:
@@ -108,59 +108,72 @@
   when:
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "7"
-    - centos_base_security_packages
-    - centos_base_firewalld
+    - centos_base_security_packages|bool
+    - centos_base_firewalld|bool
 
 - name: vim alias in .bashrc
-  lineinfile: dest=/root/.bashrc line="alias vi=vim" state=present
-  when: centos_base_basic_vim_tweaks
+  lineinfile:
+    dest: /root/.bashrc
+    line: "alias vi=vim"
+    state: present
+  when: centos_base_basic_vim_tweaks|bool
 
 - name: .vimrc file
-  template: dest=/root/ src=root/.vimrc
-  when: centos_base_basic_vim_tweaks
+  template:
+    dest: /root/
+    src: root/.vimrc
+  when: centos_base_basic_vim_tweaks|bool
 
 - name: LOCKPRG to avoid locking of GNU screen sessions
-  lineinfile: dest=/root/.bashrc line='export LOCKPRG="/bin/true"' state=present
-  when: centos_base_lockprg
+  lineinfile:
+    dest: /root/.bashrc
+    line: 'export LOCKPRG="/bin/true"'
+    state: present
+  when: centos_base_lockprg|bool
 
 - name: Create htop direcotry
   file:
     path: /root/.config/htop
     state: directory
-  when: centos_base_htop_configuration
+  when: centos_base_htop_configuration|bool
 
 - name: Configure htop
   template:
     src: root/.config/htop/htoprc
     dest: /root/.config/htop
-  when: centos_base_htop_configuration
+  when: centos_base_htop_configuration|bool
 
 - name: Ensure fail2ban service is enabled and started
-  service: name=fail2ban state=started enabled=yes
-  when: centos_base_fail2ban_configuration
+  service:
+    name: fail2ban
+    state: started
+    nabled: true
+  when: centos_base_fail2ban_configuration|bool
 
 # Allow user to control /etc/fail2ban/jail.local
 - name: Secure Fail2ban configuration
   template:
     src: etc/fail2ban/jail.d/centos_base.conf
     dest: /etc/fail2ban/jail.d
-  when: centos_base_fail2ban_configuration
+  when: centos_base_fail2ban_configuration|bool
 
 - name: Secure SSH configuration
-  template: src=etc/ssh/sshd_config dest=/etc/ssh
+  template:
+    src: etc/ssh/sshd_config
+    dest: /etc/ssh
   notify: sshd restart
-  when: centos_base_secure_sshd
+  when: centos_base_secure_sshd|bool
 
 - name: Ensure firewalld is started and enabled
   systemd:
     name: firewalld
     state: started
-    enabled: yes
+    enabled: true
   when:
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "7"
-    - centos_base_basic_packages
-    - centos_base_firewalld
+    - centos_base_basic_packages|bool
+    - centos_base_firewalld|bool
 
 - name: Enable firewalld services
   firewalld:
@@ -174,5 +187,5 @@
   when:
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "7"
-    - centos_base_firewalld_services
-    - centos_base_firewalld
+    - centos_base_firewalld_services|bool
+    - centos_base_firewalld|bool
