@@ -4,18 +4,12 @@ language: python
 services:
   - docker
 install:
-  # - pip install molecule
-  - pip install docker
-  # Workaround for Ansible 2.8/Molecule issue
-  - pip install molecule==2.19 ansible==2.7.11
-
+  - pip install molecule ansible testinfra docker
 env:
 branches:
   only:
     - master
-
 script:
-  # run molecule tests
   - molecule test
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
