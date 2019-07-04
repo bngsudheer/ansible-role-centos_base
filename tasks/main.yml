@@ -147,7 +147,7 @@
   service:
     name: fail2ban
     state: started
-    nabled: true
+    enabled: true
   when: centos_base_fail2ban_configuration|bool
 
 # Allow user to control /etc/fail2ban/jail.local
