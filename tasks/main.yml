@@ -18,7 +18,6 @@
       - tcl-devel
       - libcurl
       - openssl-devel
-      - zlib-static
       - which
       - bzip2
       - gzip
@@ -31,6 +30,7 @@
       - python-virtualenv
       - yum-cron
       - yum-utils
+      - zlib-static
   when:
     - centos_base_basic_packages|bool
     - ansible_distribution_major_version == "6" or ansible_distribution_major_version == "7"
