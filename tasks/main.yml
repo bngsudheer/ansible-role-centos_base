@@ -19,8 +19,6 @@
       - libcurl
       - openssl-devel
       - zlib-static
-      - yum-cron
-      - yum-utils
       - which
       - bzip2
       - gzip
@@ -31,6 +29,8 @@
   yum:
     name:
       - python-virtualenv
+      - yum-cron
+      - yum-utils
   when:
     - centos_base_basic_packages|bool
     - ansible_distribution_major_version == "6" or ansible_distribution_major_version == "7"
