@@ -19,7 +19,6 @@
       - libcurl
       - openssl-devel
       - zlib-static
-      - python-virtualenv
       - yum-cron
       - yum-utils
       - which
@@ -27,6 +26,22 @@
       - gzip
       - vim-enhanced
   when: centos_base_basic_packages|bool
+
+- name: Install basic packages EL 6 and 7
+  yum:
+    name:
+      - python-virtualenv
+  when:
+    - centos_base_basic_packages|bool
+    - ansible_distribution_major_version == "6" or ansible_distribution_major_version == "7"
+
+- name: Install basic packages EL 8
+  yum:
+    name:
+      - python3-virtualenv
+  when:
+    - centos_base_basic_packages|bool
+    - ansible_distribution_major_version == "8"
 
 - name: Install the 'Development tools' package group
   yum:
