@@ -4,7 +4,7 @@
     name: epel-release
   when: centos_base_enable_epel|bool
 
-- name: Install basic packages
+- name: Install development packages
   yum:
     name:
       - git
