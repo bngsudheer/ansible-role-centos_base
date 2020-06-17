@@ -22,7 +22,7 @@
       - bzip2
       - gzip
       - vim-enhanced
-  when: centos_base_basic_packages|bool
+  when: centos_base_development_packages|bool
 
 - name: Install basic packages EL 6 and 7
   yum:
@@ -30,7 +30,6 @@
       - python-virtualenv
       - yum-cron
       - yum-utils
-      - zlib-static
   when:
     - centos_base_basic_packages|bool
     - ansible_distribution_major_version == "6" or ansible_distribution_major_version == "7"
@@ -78,11 +77,13 @@
 - name: Install zlib packages from EPEL
   yum:
     name:
+      - zlib-static
       - zlib-ada-devel
       - zlib-ada
   when:
     - centos_base_enable_epel|bool
-    - centos_base_basic_packages|bool
+    - centos_base_development_packages|bool
+    - ansible_distribution_major_version == "6" or ansible_distribution_major_version == "7"
 
 - name: Install debugging packages
   yum:

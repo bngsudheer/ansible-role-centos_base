@@ -15,3 +15,4 @@ centos_base_enable_epel: false
 centos_base_lockprg: false
 centos_base_security_packages: false
 centos_base_firewalld: true
+centos_base_development_packages: false
