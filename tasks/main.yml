@@ -134,7 +134,7 @@
     name: firewalld
   when:
     - ansible_distribution == "CentOS"
-    - ansible_distribution_major_version == "7"
+    - ansible_distribution_major_version == "7" or ansible_distribution_major_version == "8"
     - centos_base_security_packages|bool
     - centos_base_firewalld|bool
 
