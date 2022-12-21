@@ -203,7 +203,7 @@
     - centos_base_firewalld|bool
 
 - name: Enable firewalld services
-  firewalld:
+  ansible.posix.firewalld:
     permanent: true
     service: "{{ item }}"
     state: enabled
